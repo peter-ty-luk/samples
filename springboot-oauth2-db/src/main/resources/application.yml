@@ -4,8 +4,8 @@ spring:
       client:
         registration:
           google:
-            client-id: 314369875715-q1jerrfodlsgdutipsm7p957u1k6sags.apps.googleusercontent.com
-            client-secret: ZjRR04E5r2_8a5rptAh2jbWI
+            client-id:
+            client-secret:
   h2:
     console:
       enabled: true
