@@ -1,4 +1,4 @@
-package com.peterluk.demo.springbootoauth2db;
+package com.peterluk.samples.springboot.oauth2db;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

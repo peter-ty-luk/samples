@@ -1,4 +1,4 @@
-package com.peterluk.demo.springbootoauth2db;
+package com.peterluk.samples.springboot.oauth2db;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
