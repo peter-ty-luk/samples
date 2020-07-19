@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backend test on CORS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+    $.ajax({
+     headers: {
+        'Authorization': 'Basic ' + btoa('testUser:password')
+    },
+    url: "http://localhost:8080/api/user"
+    }).then(function(data, status, jqxhr) {
+        $('.user').append(data.name);
+        $('.isAuthenticated').append(data.authenticated);
+        console.log(data);
+    });
+    });
+
+
+    </script>
+
+</head>
+
+<p><strong>Test if backend api is working (CORS)</strong></p>
+<p><strong>Instruction<br /></strong>Start http server and browse this page, e.g. npx http-server<br />
+    <br><strong>Test Result</strong><br>
+<span class="user">user: </span>(expected = user)<br />
+<span class="isAuthenticated">isAuthenticated : </span> (expected = true)
+
+</html>

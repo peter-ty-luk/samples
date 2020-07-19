@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-title>Login Sample</mat-card-title>
+    <mat-card-subtitle>
+        User: testUser<br>
+        Password: password
+    </mat-card-subtitle>
+    <mat-error *ngIf="isLoginFailure">
+        The username and password were not recognised
+    </mat-error>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="full-width-input">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width-input">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password" required> 
+        </mat-form-field>
+        <button mat-raised-button color="primary">Login</button>
+        </form>
+        <br>
+    </mat-card-content>
+
+</mat-card>
