@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.peterluk</groupId>
-    <artifactId>springboot-angular-login</artifactId>
+    <artifactId>springboot-login-angular</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -63,32 +63,75 @@
                 <version>2.22.0</version>
             </plugin>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${springboot-starter-version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.9.1</version>
                 <executions>
                     <execution>
-                        <id>exec-npm-ng-build</id>
-                        <phase>package</phase>
+                        <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
+                        <id>install node and npm</id>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>install-node-and-npm</goal>
                         </goals>
+                        <!-- optional: default phase is "generate-resources" -->
+                        <phase>generate-resources</phase>
+                    </execution>
+                    <execution>
+                        <id>ng build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <arguments>run ng build -- --prod</arguments>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
-                    <workingDirectory>${project.basedir}/src/main/resources/frontend</workingDirectory>
-                    <executable>ng</executable>
-                    <arguments>
-                        <argument>build</argument>
-                        <argument>--prod</argument>
-                    </arguments>
+                    <nodeVersion>v12.6.0</nodeVersion>
+                    <downloadRoot>https://nodejs.org/dist/</downloadRoot>
+                    <installDirectory>${project.basedir}</installDirectory>
+                    <workingDirectory>${project.basedir}/src/frontend</workingDirectory>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot-starter-version}</version>
+                <configuration>
+                    <mainClass>com.peterluk.samples.springboot.angular.login.Application</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>exec-maven-plugin</artifactId>-->
+<!--                <version>1.6.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>exec-npm-ng-build</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>exec</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <workingDirectory>${project.basedir}/src/main/resources/frontend</workingDirectory>-->
+<!--                    <executable>ng</executable>-->
+<!--                    <arguments>-->
+<!--                        <argument>build</argument>-->
+<!--                        <argument>&#45;&#45;prod</argument>-->
+<!--                    </arguments>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>

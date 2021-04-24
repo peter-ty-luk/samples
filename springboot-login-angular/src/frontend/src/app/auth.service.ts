@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from './../environments/environment';
 
 @Injectable({
   // singleton
@@ -22,26 +23,26 @@ export class AuthService {
     // this.isAuthenticated.next(authenticated);
     // console.log(this.userSubject);
     // console.log(this.userSubject.value);
-    return this.userSubject.value != null;    
+    return this.userSubject.value != null;
   }
 
   public username() {
     return this.userSubject.value;
   }
-  
+
 
   async login(username: string, password: string) {
-    const url = 'http://localhost:8080/api/user';
+    const url = environment.apiUrl + '/api/user';
     var authorizationBasic = window.btoa(username + ':' + password);
     let headers = new HttpHeaders({'Authorization' : 'Basic ' + authorizationBasic});
 
-    try {      
-      const data = await this.http.get<any>(url, {headers}).toPromise();      
-      console.log("Data: " + JSON.stringify(data)); 
+    try {
+      const data = await this.http.get<any>(url, {headers}).toPromise();
+      console.log("Data: " + JSON.stringify(data));
       sessionStorage.setItem('user', username);
       this.userSubject.next(username);
       this.router.navigate(['']);
-    } catch (error) {      
+    } catch (error) {
       throw error;
     }
 
@@ -65,5 +66,5 @@ export class AuthService {
       console.error(error);
     }
   };
-  
+
 }
