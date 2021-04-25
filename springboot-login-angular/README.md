@@ -36,3 +36,9 @@ mvn spring-boot:run
 
 #### 3. Open browser and browse at
 [http://localhost:8080]
+
+#### 4. Deploy to Azure Webapp
+Install Azure Toolkit for IntelliJ
+In Azure, create new App Services for this
+Amend prod environment apiUrl if necessary
+Right click project, click Azure -> deploy to Azure Web Apps

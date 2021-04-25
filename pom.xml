@@ -12,7 +12,7 @@
         <module>springboot-oauth2-db</module>
         <module>springboot-rest</module>
         <module>springboot-oauth2</module>
-        <module>springboot-angular-login</module>
+        <module>springboot-login-angular</module>
         <module>datastructure-ringbuffer</module>
     </modules>
 
