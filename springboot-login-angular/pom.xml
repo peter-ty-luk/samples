@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <springboot-starter-version>2.3.1.RELEASE</springboot-starter-version>
+        <springboot-starter-version>2.5.12</springboot-starter-version>
     </properties>
 
     <dependencies>
